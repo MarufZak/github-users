@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+  font-size: 62.5%;
+}
+
+body {
+  min-height: 100%;
+  background-color: var(--bg-primary);
+  font-size: 1.6rem;
+  line-height: 1.5;
+  font-family: 'Space Mono';
+  padding: 18px 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+@media screen and (max-width: 768px) {
+  body {
+    padding: 36px 24px;
+  }
+}
+
+#root {
+  max-width: 730px;
+  width: 100%;
+}
+
+:root {
+  --bg-primary: hsl(227, 100%, 98%);
+  --bg-secondary: hsl(0, 0%, 100%);
+
+  --color-primary: hsl(217, 35%, 45%);
+  --color-secondary: hwb(217 16% 75%);
+  --color-tertiary: hsl(217, 20%, 51%);
+  --color-blue: hsl(212, 100%, 50%);
+  --color-white: hsl(0, 0%, 100%);
+
+  --shadow: 0px 16px 30px -10px hsla(227, 46%, 50%, 0.2);
+}
+
+body.dark {
+  --bg-primary: hsl(220, 40%, 13%);
+  --bg-secondary: hsl(222, 41%, 20%);
+
+  --color-primary: hsl(0, 0%, 100%);
+  --color-secondary: hsl(0, 0%, 100%);
+  --color-tertiary: hsl(0, 0%, 100%);
+
+  --shadow: none;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  font-family: inherit;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+svg {
+  width: 25px;
+  height: 25px;
+}
+
+input {
+  font-family: inherit;
+  background: none;
+  border: none;
+}
+
+input:focus {
+  outline: none;
+}
+
+/* svg {
+  vertical-align: middle;
+} */
