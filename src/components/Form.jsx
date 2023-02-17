@@ -4,11 +4,17 @@ import { useAppContext } from '../context/AppProvider';
 import Icon from './Icon';
 
 const Form = () => {
-  const { handleSubmit: submit } = useAppContext();
+  const {
+    error,
+    handleSubmit: submit,
+    isFetchingLocked,
+  } = useAppContext();
   const [input, setInput] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (isFetchingLocked) return;
 
     let user = input.toLowerCase();
     submit(user);
@@ -23,7 +29,11 @@ const Form = () => {
         value={input}
         onChange={(e) => setInput(e.target.value)}
       />
-      <button className="submit-btn" type="submit">
+      {error.status === 404 && <p className="error">No results</p>}
+      <button
+        className={`submit-btn ${isFetchingLocked && 'locked'}`}
+        type="submit"
+      >
         Search
       </button>
       <Icon className="icon">search</Icon>
@@ -37,6 +47,14 @@ const Wrapper = styled.form`
   position: relative;
   margin-bottom: 24px;
 
+  .error {
+    color: var(--color-red);
+    position: absolute;
+    top: 50%;
+    right: 120px;
+    transform: translateY(-50%);
+  }
+
   .input {
     font-size: 1.8rem;
     padding: 22px 120px 22px 80px;
@@ -44,6 +62,7 @@ const Wrapper = styled.form`
     background-color: var(--bg-secondary);
     color: var(--color-secondary);
     box-shadow: var(--shadow);
+    transition: 0.3s;
 
     ::placeholder {
       color: var(--color-secondary);
@@ -60,6 +79,11 @@ const Wrapper = styled.form`
     top: 50%;
     right: 10px;
     transform: translateY(-50%);
+  }
+
+  .submit-btn.locked {
+    cursor: not-allowed;
+    opacity: 0.5;
   }
 
   .icon {

@@ -24,6 +24,7 @@ const Overview = () => {
 };
 
 const Wrapper = styled.ul`
+  transition: 0.3s;
   padding: 16px 32px;
   border-radius: 10px;
   background-color: var(--bg-primary);

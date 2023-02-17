@@ -16,9 +16,8 @@ const ThemeSwitcher = () => {
 
   return (
     <Wrapper onClick={handleClick}>
-      <span className="theme">{theme}</span>
-      {/* // edit alt */}
-      <Icon className="icon">{theme}</Icon>
+      <span className="theme">{theme==="dark"?"light":"dark"}</span>
+      <Icon className="icon">{theme==="dark"?"light":"dark"}</Icon>
     </Wrapper>
   );
 };

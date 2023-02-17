@@ -3,7 +3,6 @@ import React, {
   createContext,
   useContext,
   useEffect,
-  useMemo,
   useState,
 } from 'react';
 import '../axios/interceptors';
@@ -15,8 +14,9 @@ const AppProvider = ({ children }) => {
     return localStorage.getItem('theme') || 'light';
   });
   const [data, setData] = useState({});
-  const [isError, setIsError] = useState(false);
+  const [error, setError] = useState({ state: false, status: 0 });
   const [isLoading, setIsLoading] = useState(false);
+  const [isFetchingLocked, setIsFetchingLocked] = useState(false);
 
   const setDarkTheme = () => {
     localStorage.setItem('theme', 'dark');
@@ -28,6 +28,26 @@ const AppProvider = ({ children }) => {
     setTheme('light');
   };
 
+
+  const handleSubmit = async (user) => {
+    setIsLoading(true);
+    setError({ state: false, status: 0 });
+
+    try {
+      const response = await axios(
+        `https://api.github.com/users/${user}`
+      );
+      const data = response.data;
+      setData(data);
+    } catch (error) {
+      console.log(error);
+      setError({ state: true, status: error.response.status });
+    }
+
+    setIsLoading(false);
+    setIsFetchingLocked(true);
+  };
+
   useEffect(() => {
     document.body.className = theme;
   }, [theme]);
@@ -36,25 +56,16 @@ const AppProvider = ({ children }) => {
     handleSubmit('marufzak');
   }, []);
 
-  const handleSubmit = async (user) => {
-    setIsLoading(true);
-    try {
-      const response = await axios(
-        `https://api.github.com/users/${user}`
-      );
-      const data = response.data;
+  useEffect(() => {
+    if (isFetchingLocked) {
+      let timeout = setTimeout(() => {
+        setIsFetchingLocked(false);
+      }, 3000);
 
-      console.log(data);
-
-      setData(data);
-    } catch (error) {
-      setIsError(true);
+      return () => clearTimeout(timeout);
     }
+  }, [isFetchingLocked]);
 
-    setIsLoading(false);
-  };
-
-  // useMemo is used for possible future changes updates.
   const value = {
     theme,
     setLightTheme,
@@ -62,7 +73,8 @@ const AppProvider = ({ children }) => {
     isLoading,
     handleSubmit,
     data,
-    isError,
+    error,
+    isFetchingLocked
   };
 
   return (

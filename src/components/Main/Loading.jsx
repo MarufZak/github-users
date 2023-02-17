@@ -25,7 +25,9 @@ const Loading = () => {
 const Wrapper = styled.div`
   width: 40px;
   height: 40px;
-  position: relative;
+  position: absolute;
+  inset: 0;
+  margin: auto;
 
   .circle {
     width: 100%;

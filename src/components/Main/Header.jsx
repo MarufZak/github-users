@@ -12,7 +12,7 @@ const Header = () => {
     <Wrapper>
       <h2 className="name">{data.name}</h2>
       <span className="joined">
-        {format(data.created_at)}
+        Joined {format(data.created_at)}
       </span>
       <a href={data.html_url} className="username">
         @{data.login?.toLowerCase()}

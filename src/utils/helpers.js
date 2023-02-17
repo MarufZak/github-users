@@ -14,3 +14,10 @@ export const format = (time) => {
     return `${year}-${month}-${day}`;
   }
 };
+
+export const clearUrl = (url) => {
+  if (url.startsWith('www.')) {
+    return url.replace('www.', '');
+  }
+  return url;
+};

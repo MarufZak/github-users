@@ -18,6 +18,7 @@ body {
   line-height: 1.5;
   font-family: 'Space Mono';
   padding: 18px 0;
+  transition: 0.3s;
 
   display: flex;
   align-items: center;
@@ -45,6 +46,7 @@ body {
   --color-tertiary: hsl(217, 20%, 51%);
   --color-blue: hsl(212, 100%, 50%);
   --color-white: hsl(0, 0%, 100%);
+  --color-red: hsl(0, 91%, 62%);
 
   --shadow: 0px 16px 30px -10px hsla(227, 46%, 50%, 0.2);
 }
@@ -90,7 +92,3 @@ input {
 input:focus {
   outline: none;
 }
-
-/* svg {
-  vertical-align: middle;
-} */

@@ -2,6 +2,7 @@ import React from 'react';
 import Form from './components/Form';
 import Header from './components/Header';
 import Main from './components/Main/Main';
+import Toast from './components/Toast';
 import AppProvider from './context/AppProvider';
 
 const App = () => {
@@ -10,6 +11,7 @@ const App = () => {
       <Header />
       <Form />
       <Main />
+      <Toast />
     </AppProvider>
   );
 };

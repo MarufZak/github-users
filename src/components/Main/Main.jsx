@@ -35,10 +35,12 @@ const Main = () => {
 };
 
 const Wrapper = styled.section`
+  transition: 0.3s;
   background-color: var(--bg-secondary);
   box-shadow: var(--shadow);
   border-radius: 15px;
   padding: 48px;
+  position: relative;
 
   display: grid;
   grid-template: repeat(3, auto) / auto 1fr;
